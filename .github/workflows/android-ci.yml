@@ -7,10 +7,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '11'
-    - run: cd android && ./gradlew assembleDebug
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      # Step 3: Grant execute permission to gradlew (optional but recommended)
+      - name: Grant execute permission to Gradlew
+        run: chmod +x ./gradlew
+
+      # Step 4: Build the Android app
+      - name: Build the Android App
+        run: ./gradlew assembleDebug
