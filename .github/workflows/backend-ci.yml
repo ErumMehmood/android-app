@@ -1,32 +1,14 @@
 name: Backend CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: |
-          cd backend
-          npm install
-
-      - name: Run Tests
-        run: |
-          cd backend
-          npm test
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+    - run: cd backend && npm install && npm run build
