@@ -11,5 +11,6 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
+        distribution: 'temurin'
         java-version: '11'
     - run: cd android && ./gradlew assembleDebug
